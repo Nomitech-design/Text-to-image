@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online tool to convert text to images with quality options. Create beautiful images from text for social media, websites, and more.">
+    <meta name="keywords" content="text to image, image generator, image creator, online image tool, text visualization">
+    <meta name="author" content="Your Name">
+    <meta property="og:title" content="Text to Image Generator | Create Images from Text">
+    <meta property="og:description" content="Convert your text into beautiful, shareable images with customizable quality settings.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/text-to-image">
+    <meta property="og:image" content="https://yourwebsite.com/images/preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <title>Text to Image Generator | Create High-Quality Images from Text</title>
+    
+    <!-- Canonical URL for SEO -->
+    <link rel="canonical" href="https://yourwebsite.com/text-to-image">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Text to Image Generator",
+      "description": "Online tool to convert text to images with customizable quality settings",
+      "url": "https://yourwebsite.com/text-to-image",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web Browser"
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #4285f4;
+            --secondary-color: #34a853;
+            --accent-color: #ea4335;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333;
+            --medium-gray: #757575;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--light-gray);
+            padding: 0;
+            margin: 0;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .tool-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tool-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+            text-align: center;
+        }
+        
+        .tool-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .input-section, .output-section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .input-section label, .output-section label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .input-section textarea {
+            height: 200px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            font-family: inherit;
+            margin-bottom: 1rem;
+        }
+        
+        .settings-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .settings-title {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quality-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .quality-option {
+            padding: 0.5rem 1rem;
+            background-color: var(--light-gray);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quality-option:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .quality-option.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .generate-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 1rem;
+        }
+        
+        .generate-btn:hover {
+            background-color: #3367d6;
+        }
+        
+        .output-image-container {
+            border: 1px dashed #ddd;
+            border-radius: 4px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light-gray);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .output-image {
+            max-width: 100%;
+            max-height: 400px;
+            display: none;
+        }
+        
+        .placeholder-text {
+            color: var(--medium-gray);
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .download-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: none;
+        }
+        
+        .download-btn:hover {
+            background-color: #2d9249;
+        }
+        
+        .ad-container {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 2rem 0;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ad-label {
+            font-size: 0.8rem;
+            color: var(--medium-gray);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+        }
+        
+        .feature-desc {
+            color: var(--medium-gray);
+        }
+        
+        footer {
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.75rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .tool-container {
+                padding: 1rem;
+            }
+            
+            .quality-options {
+                flex-direction: column;
+            }
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            margin: 0 auto;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with navigation -->
+    <header>
+        <div class="container header-content">
+            <a href="/" class="logo">Text2Image</a>
+            <button class="mobile-menu-btn">☰</button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <!-- Hero section -->
+        <section class="hero">
+            <h1>Convert Text to Beautiful Images</h1>
+            <p>Create stunning, shareable images from your text with customizable quality settings. Perfect for social media, blogs, and presentations.</p>
+        </section>
+        
+        <!-- Top Ad Banner -->
+        <div class="ad-container">
+            <div>
+                <div class="ad-label">Advertisement</div>
+                <!-- Replace with your Google AdSense code -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+                    crossorigin="anonymous"></script>
+                <!-- Text2Image Top Banner -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                    data-ad-slot="YOUR_AD_SLOT_ID"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+        
+        <!-- Main tool container -->
+        <section class="tool-container">
+            <h2 class="tool-title">Text to Image Generator</h2>
+            
+            <div class="tool-grid">
+                <!-- Input section -->
+                <div class="input-section">
+                    <label for="input-text">Enter your text:</label>
+                    <textarea id="input-text" placeholder="Type or paste your text here..."></textarea>
+                    
+                    <div class="settings-section">
+                        <div class="settings-title">Image Quality:</div>
+                        <div class="quality-options">
+                            <div class="quality-option active" data-quality="low">Low (Fast)</div>
+                            <div class="quality-option" data-quality="medium">Medium</div>
+                            <div class="quality-option" data-quality="high">High Quality</div>
+                            <div class="quality-option" data-quality="ultra">Ultra HD</div>
+                        </div>
+                    </div>
+                    
+                    <button id="generate-btn" class="generate-btn">Generate Image</button>
+                    <div id="spinner" class="spinner"></div>
+                </div>
+                
+                <!-- Output section -->
+                <div class="output-section">
+                    <label>Generated Image:</label>
+                    <div class="output-image-container">
+                        <img id="output-image" class="output-image" alt="Generated image from your text">
+                        <div id="placeholder" class="placeholder-text">Your generated image will appear here</div>
+                    </div>
+                    <button id="download-btn" class="download-btn">Download Image</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Middle Ad Banner -->
+        <div class="ad-container">
+            <div>
+                <div class="ad-label">Advertisement</div>
+                <!-- Replace with your Google AdSense code -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+                    crossorigin="anonymous"></script>
+                <!-- Text2Image Middle Rectangle -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                    data-ad-slot="YOUR_AD_SLOT_ID"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+        
+        <!-- Features section -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Fast Processing</h3>
+                <p class="feature-desc">Generate images in seconds with our optimized processing engine.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3 class="feature-title">Quality Options</h3>
+                <p class="feature-desc">Choose from multiple quality settings to suit your needs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Mobile Friendly</h3>
+                <p class="feature-desc">Works perfectly on all devices, from desktop to mobile.</p>
+            </div>
+        </section>
+        
+        <!-- Bottom Ad Banner -->
+        <div class="ad-container">
+            <div>
+                <div class="ad-label">Advertisement</div>
+                <!-- Replace with your Google AdSense code -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+                    crossorigin="anonymous"></script>
+                <!-- Text2Image Bottom Banner -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                    data-ad-slot="YOUR_AD_SLOT_ID"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/about">About Us</a>
+                <a href="/faq">FAQ</a>
+            </div>
+            <p class="copyright">© 2023 Text2Image Generator. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('main-nav').classList.toggle('active');
+        });
+        
+        // Quality selection
+        const qualityOptions = document.querySelectorAll('.quality-option');
+        qualityOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                qualityOptions.forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Generate image function
+        document.getElementById('generate-btn').addEventListener('click', function() {
+            const text = document.getElementById('input-text').value.trim();
+            const quality = document.querySelector('.quality-option.active').getAttribute('data-quality');
+            
+            if (!text) {
+                alert('Please enter some text to generate an image');
+                return;
+            }
+            
+            // Show loading spinner
+            const spinner = document.getElementById('spinner');
+            const generateBtn = document.getElementById('generate-btn');
+            generateBtn.disabled = true;
+            spinner.style.display = 'block';
+            
+            // Simulate image generation (in a real app, this would call your backend API)
+            setTimeout(() => {
+                // Hide spinner
+                spinner.style.display = 'none';
+                generateBtn.disabled = false;
+                
+                // For demo purposes, we'll create a canvas with the text
+                createTextImage(text, quality);
+            }, 1500);
+        });
+        
+        // Function to create a text image (demo implementation)
+        function createTextImage(text, quality) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size based on quality
+            let width, height, fontSize, padding;
+            
+            switch(quality) {
+                case 'low':
+                    width = 400;
+                    height = 200;
+                    fontSize = 16;
+                    padding = 20;
+                    break;
+                case 'medium':
+                    width = 600;
+                    height = 300;
+                    fontSize = 24;
+                    padding = 30;
+                    break;
+                case 'high':
+                    width = 800;
+                    height = 400;
+                    fontSize = 32;
+                    padding = 40;
+                    break;
+                case 'ultra':
+                    width = 1200;
+                    height = 600;
+                    fontSize = 48;
+                    padding = 60;
+                    break;
+                default:
+                    width = 600;
+                    height = 300;
+                    fontSize = 24;
+                    padding = 30;
+            }
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Draw background
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, width, height);
+            
+            // Draw border
+            ctx.strokeStyle = '#4285f4';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(5, 5, width - 10, height - 10);
+            
+            // Draw text
+            ctx.fillStyle = '#333333';
+            ctx.font = `bold ${fontSize}px Arial`;
+            ctx.textAlign = 'center';
+            
+            // Wrap text
+            const maxWidth = width - (padding * 2);
+            const lineHeight = fontSize * 1.2;
+            const lines = [];
+            let currentLine = '';
+            
+            const words = text.split(' ');
+            for (let i = 0; i < words.length; i++) {
+                const testLine = currentLine + words[i] + ' ';
+                const metrics = ctx.measureText(testLine);
+                const testWidth = metrics.width;
+                
+                if (testWidth > maxWidth && i > 0) {
+                    lines.push(currentLine);
+                    currentLine = words[i] + ' ';
+                } else {
+                    currentLine = testLine;
+                }
+            }
+            lines.push(currentLine);
+            
+            // Draw each line
+            const startY = (height - (lines.length * lineHeight)) / 2 + fontSize;
+            for (let i = 0; i < lines.length; i++) {
+                ctx.fillText(lines[i], width / 2, startY + (i * lineHeight));
+            }
+            
+            // Convert canvas to image and display
+            const dataURL = canvas.toDataURL('image/png');
+            const outputImage = document.getElementById('output-image');
+            const placeholder = document.getElementById('placeholder');
+            const downloadBtn = document.getElementById('download-btn');
+            
+            outputImage.src = dataURL;
+            outputImage.style.display = 'block';
+            placeholder.style.display = 'none';
+            downloadBtn.style.display = 'inline-block';
+            
+            // Set up download button
+            downloadBtn.onclick = function() {
+                const link = document.createElement('a');
+                link.download = 'text-image.png';
+                link.href = dataURL;
+                link.click();
+            };
+        }
+        
+        // Initialize AdSense ads
+        // This would be handled automatically by the AdSense script
+        // but we can ensure all ad slots are processed
+        window.addEventListener('load', function() {
+            if (typeof adsbygoogle !== 'undefined') {
+                adsbygoogle = window.adsbygoogle || [];
+                adsbygoogle.push({});
+            }
+        });
+    </script>
+    
+    <!-- Google Analytics (optional) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</body>
+</html>
